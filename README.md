@@ -52,6 +52,4 @@ segue o nosso package.json
 }
 
 ----------------------------------------------------------------------
-Segue o nosso modelo de figma
-
-https://www.figma.com/design/ECZtMtIQaD68SiePNqOWHi/UPX4?node-id=0-1&node-type=canvas&t=GM1r61qC8p1NC0JY-0
+Segue o nosso modelo de [Figma](https://www.figma.com/design/ECZtMtIQaD68SiePNqOWHi/UPX4?node-id=0-1&node-type=canvas&t=GM1r61qC8p1NC0JY-0)
