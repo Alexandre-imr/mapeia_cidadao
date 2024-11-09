@@ -11,15 +11,12 @@ import {
   Image,
 } from "@chakra-ui/react";
 
-export default function Page() {
+const Register = () => {
   return (
     <Flex height="100vh">
-      {/* Container da Imagem */}
       <Box flex="1" bg="gray.200" display={{ base: "none", md: "block" }}>
         <Image src="/Capa.png" alt="Capa" w="100%" h="100%" />
       </Box>
-
-      {/* Container do Formulário */}
       <Flex
         flex="1"
         bgGradient="linear(to-r, purple.800, purple.400)"
@@ -62,10 +59,12 @@ export default function Page() {
           </Button>
 
           <Text textAlign="center" mt="4" color="white">
-            Não tem uma conta?{" "}
+            Não tem uma conta?
           </Text>
         </Box>
       </Flex>
     </Flex>
   );
-}
+};
+
+export default Register;

@@ -8,10 +8,10 @@ import {
   Text,
   Heading,
   Image,
+  Link,
 } from "@chakra-ui/react";
-import Link from "next/link";
 
-export default function LoginPage() {
+const Page = () => {
   return (
     <Flex
       height="100vh"
@@ -58,19 +58,20 @@ export default function LoginPage() {
             _placeholder={{ color: "gray.500" }}
           />
         </FormControl>
+        <Link href="/lookclient">
+          <Button colorScheme="green" width="full" mt={4} mb={4}>
+            Entrar
+          </Button>
+        </Link>
 
-        <Button colorScheme="green" width="full" mt={4} mb={4}>
-          Entrar
-        </Button>
-
-        {/* Link para Cadastro */}
         <Text color="white">
           Não tem uma conta?
-          <Link href="/register" color="green">
-            Cadastra-se
+          <Link href="/register" color="green.300">
+            Cadastre-se
           </Link>
         </Text>
       </Box>
     </Flex>
   );
-}
+};
+export default Page;
