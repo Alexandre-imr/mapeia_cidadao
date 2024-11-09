@@ -1,184 +1,175 @@
 "use client";
 import React, { useState } from "react";
+import {
+  Box,
+  Text,
+  Select,
+  VStack,
+  Flex,
+  SimpleGrid,
+  Textarea,
+  Button,
+} from "@chakra-ui/react";
+import Navbar from "@/components/Navbar/Navbar";
 
-const Formulario = () => {
-  const [formData, setFormData] = useState({
-    areaProblema: "",
-    afetaOutrasAreas: "",
-    afetaQualidadeVida: "",
-    impactoEconomico: "",
-    sazonal: "",
-    presenciou: "",
-    gravidade: "",
-    resolvido: "",
-    impactoServicosEssenciais: "",
-    solucao: "",
-  });
+const perguntas = [
+  {
+    id: 1,
+    pergunta: "Selecione a área principal do problema:",
+    opcoes: ["Cachorro1", "Verde", "Vermelho", "Amarelo"],
+  },
+  {
+    id: 2,
+    pergunta: "O problema afeta a qualidade de vida da população ?",
+    opcoes: ["Cachorro2", "Banana", "Laranja", "Uva"],
+  },
+  {
+    id: 3,
+    pergunta: "Você considera que o problema é sazonal ocorre durante o ano ?",
+    opcoes: ["Cachorro3", "Esportes", "Música", "Viagem"],
+  },
+  {
+    id: 4,
+    pergunta: "Qual a gravidade desse problema ?",
+    opcoes: ["Cachorro4", "Esportes", "Música", "Viagem"],
+  },
+  {
+    id: 5,
+    pergunta:
+      "Esse problema já foi resolvido ou melhorado anteriormente, mas voltou a acontecer ?",
+    opcoes: ["Cachorro5", "Esportes", "Música", "Viagem"],
+  },
+  {
+    id: 6,
+    pergunta: "Esse problema afeta outras áreas além da principal ?",
+    opcoes: ["Cachorro6", "Esportes", "Música", "Viagem"],
+  },
+  {
+    id: 7,
+    pergunta: "Esse problema tem impacto econômico ?",
+    opcoes: ["Cachorro7", "Esportes", "Música", "Viagem"],
+  },
+  {
+    id: 8,
+    pergunta:
+      "Você já presenciou ou foi diretamente afetado por esse problema ?",
+    opcoes: ["Cachorro8", "Esportes", "Música", "Viagem"],
+  },
+  {
+    id: 9,
+    pergunta: "Esse problema tem impacto econômico ?",
+    opcoes: ["Cachorro9", "Esportes", "Música", "Viagem"],
+  },
+  {
+    id: 10,
+    pergunta:
+      "Esse problema já teve algum impacto em serviços essenciais da sua região ?",
+    opcoes: ["Cachorro10", "Esportes", "Música", "Viagem"],
+  },
+];
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+const CardPerguntas = () => {
+  const [respostas, setRespostas] = useState<{ [key: number]: string }>({});
+  const [mensagem, setMensagem] = useState("");
+
+  const handleSelectChange = (id: number, value: string) => {
+    setRespostas((prevRespostas) => ({
+      ...prevRespostas,
+      [id]: value,
+    }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
-    // Logic to submit the form data
+  const handleSubmit = async () => {
+    const webhookUrl =
+      "https://n8n-certo-n8n.3zyhkx.easypanel.host/webhook-test/4cbe3cf8-f52e-43c7-9b53-15b75c8f22da"; // Substitua pela URL do seu webhook
+    const data = {
+      respostas,
+      mensagem,
+    };
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert("Dados enviados com sucesso!");
+      } else {
+        alert("Erro ao enviar dados");
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+      alert("Erro ao conectar ao webhook");
+    }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        maxWidth: "500px",
-        margin: "0 auto",
-        backgroundColor: "#1A1A40",
-        color: "#fff",
-        padding: "20px",
-        borderRadius: "8px",
-      }}
-    >
-      <h2 style={{ textAlign: "center" }}>Preencha o formulário</h2>
-
-      <label>Selecione a área principal do problema:</label>
-      <select
-        name="areaProblema"
-        value={formData.areaProblema}
-        onChange={handleChange}
-      >
-        <option value="">Selecione</option>
-        <option value="Saúde">Saúde</option>
-        <option value="Educação">Educação</option>
-        <option value="Segurança">Segurança</option>
-        {/* Adicione mais opções conforme necessário */}
-      </select>
-
-      <label>Esse problema afeta outras áreas além da principal?</label>
-      <select
-        name="afetaOutrasAreas"
-        value={formData.afetaOutrasAreas}
-        onChange={handleChange}
-      >
-        <option value="">Selecione</option>
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-
-      <label>O problema afeta a qualidade de vida da população?</label>
-      <select
-        name="afetaQualidadeVida"
-        value={formData.afetaQualidadeVida}
-        onChange={handleChange}
-      >
-        <option value="">Selecione</option>
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-
-      <label>Esse problema tem impacto econômico?</label>
-      <select
-        name="impactoEconomico"
-        value={formData.impactoEconomico}
-        onChange={handleChange}
-      >
-        <option value="">Selecione</option>
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-
-      <label>
-        Você considera que o problema é sazonal ou ocorre durante todo o ano?
-      </label>
-      <select name="sazonal" value={formData.sazonal} onChange={handleChange}>
-        <option value="">Selecione</option>
-        <option value="Sazonal">Sazonal</option>
-        <option value="Todo o ano">Todo o ano</option>
-      </select>
-
-      <label>
-        Você já presenciou ou foi diretamente afetado por esse problema?
-      </label>
-      <select
-        name="presenciou"
-        value={formData.presenciou}
-        onChange={handleChange}
-      >
-        <option value="">Selecione</option>
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-
-      <label>Qual a gravidade desse problema?</label>
-      <select
-        name="gravidade"
-        value={formData.gravidade}
-        onChange={handleChange}
-      >
-        <option value="">Selecione</option>
-        <option value="Baixa">Baixa</option>
-        <option value="Média">Média</option>
-        <option value="Alta">Alta</option>
-      </select>
-
-      <label>
-        Esse problema já foi resolvido ou melhorado anteriormente, mas voltou a
-        acontecer?
-      </label>
-      <select
-        name="resolvido"
-        value={formData.resolvido}
-        onChange={handleChange}
-      >
-        <option value="">Selecione</option>
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-
-      <label>
-        Esse problema já teve algum impacto em serviços essenciais da sua
-        região?
-      </label>
-      <select
-        name="impactoServicosEssenciais"
-        value={formData.impactoServicosEssenciais}
-        onChange={handleChange}
-      >
-        <option value="">Selecione</option>
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-
-      <label>
-        Na sua opinião, qual seria a melhor solução para esse problema?
-      </label>
-      <textarea
-        name="solucao"
-        value={formData.solucao}
-        onChange={handleChange}
-        placeholder="Digite sua solução aqui..."
-      ></textarea>
-
-      <button
-        type="submit"
-        style={{
-          backgroundColor: "#4CAF50",
-          color: "white",
-          padding: "10px",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-          marginTop: "10px",
-          width: "100%",
-        }}
-      >
-        Enviar
-      </button>
-    </form>
+    <Flex height="100vh" alignItems="center" justifyContent="center" bg="">
+      <Navbar />
+      <Box>
+        <SimpleGrid columns={2} spacing={10}>
+          {perguntas.map(({ id, pergunta, opcoes }) => (
+            <Box
+              key={id}
+              p={4}
+              borderWidth="1px"
+              borderRadius="md"
+              boxShadow="md"
+              bg="white"
+            >
+              <Text mb={2} fontWeight="bold">
+                {pergunta}
+              </Text>
+              <Select
+                placeholder="Selecione uma opção"
+                onChange={(e) => handleSelectChange(id, e.target.value)}
+              >
+                {opcoes.map((opcao, index) => (
+                  <option key={index} value={opcao}>
+                    {opcao}
+                  </option>
+                ))}
+              </Select>
+            </Box>
+          ))}
+        </SimpleGrid>
+        <Box
+          p={4}
+          borderWidth="1px"
+          borderRadius="md"
+          boxShadow="md"
+          bg="white"
+          mt={10}
+        >
+          <Text>
+            Na sua opinião, qual seria a melhor solução para esse problema?
+          </Text>
+          <Textarea
+            placeholder="Escreva sua mensagem aqui..."
+            size="md"
+            resize="vertical"
+            focusBorderColor="purple.400"
+            value={mensagem}
+            onChange={(e) => setMensagem(e.target.value)}
+          />
+        </Box>
+        <Button
+          mt={4}
+          colorScheme="green"
+          onClick={handleSubmit}
+          w="100%"
+          height="32px"
+          mb="32px"
+        >
+          Enviar
+        </Button>
+      </Box>
+    </Flex>
   );
 };
 
-export default Formulario;
+export default CardPerguntas;

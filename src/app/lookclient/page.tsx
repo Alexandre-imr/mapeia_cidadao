@@ -13,7 +13,7 @@ import {
 
 export default function ClientPage() {
   return (
-    <Flex bg="purple.400" height="100vh">
+    <Flex height="100vh">
       <Navbar />
 
       <Flex w="100%" justify="center" align="center">
