@@ -1,22 +1,22 @@
 // src/app/client.tsx
+"use client";
 
 import Navbar from "@/components/Navbar/Navbar";
 import {
   Box,
   Text,
   Flex,
-  Textarea,
   Heading,
   Button,
-  Link,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 export default function ClientPage() {
   return (
-    <Flex height="100vh">
+    <Flex height="100vh" direction="column">
       <Navbar />
 
-      <Flex w="100%" justify="center" align="center">
+      <Flex w="100%" justify="center" align="center" flex="1">
         <Box
           bg="purple.600"
           borderRadius="md"
@@ -27,16 +27,16 @@ export default function ClientPage() {
           textAlign="center"
         >
           <Heading as="h3" size="lg" mb={4}>
-            Relate Seu Problema
+            {`Relate Seu Problema`}
           </Heading>
           <Text fontSize="md" mb={4}>
-            Preencha o formulário
+            {`Preencha o formulário`}
           </Text>
-          <Link href="/problem">
-            <Button colorScheme="green" width="full" mt={4} mb={4}>
-              Clique Aqui
+          <NextLink href="/problem" passHref>
+            <Button as="a" colorScheme="green" width="full" mt={4} mb={4}>
+              {`Clique Aqui`}
             </Button>
-          </Link>
+          </NextLink>
         </Box>
       </Flex>
     </Flex>
