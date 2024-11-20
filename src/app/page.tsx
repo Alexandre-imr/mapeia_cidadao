@@ -58,7 +58,7 @@ const Page = () => {
             _placeholder={{ color: "gray.500" }}
           />
         </FormControl>
-        <Link href="/lookclient">
+        <Link href="/home">
           <Button colorScheme="green" width="full" mt={4} mb={4}>
             Entrar
           </Button>
@@ -67,7 +67,7 @@ const Page = () => {
         <Text color="white">
           Não tem uma conta?
           <Link href="/register" color="green.300">
-            Cadastre-se
+             Cadastre-se
           </Link>
         </Text>
       </Box>

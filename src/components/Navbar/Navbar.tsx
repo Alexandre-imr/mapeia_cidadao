@@ -1,7 +1,6 @@
 // src/components/Navbar.tsx
 
-import { Flex, Link, Box, Text, VStack, Image } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Flex, Link, Box, VStack, Image } from "@chakra-ui/react";
 
 export default function Navbar() {
   return (
@@ -21,11 +20,15 @@ export default function Navbar() {
       <Image src="Logo.png" />
       <Box mb="8"></Box>
       <VStack align="flex-start" spacing="4">
-        <Link>Home</Link>
-        <Link>Relate seu problema</Link>
-        <Link>Mapa de Calor</Link>
-        <Link>Chat</Link>
-        <Link>Meus formulários</Link>
+        <Link as="a" href="/home">Home</Link>
+        <Link as="a" href="/problem">Relate seu problema</Link>
+        <Link color="gray.400">
+          Mapa de Calor
+        </Link>
+        <Link as="a" href="/formularios">Meus formulários</Link>
+        <Link as="a" href="/problempendente">Problemas Pendentes</Link>
+        <Link as="a" href="/relatorio">Relatório</Link>
+        <Link as="a" href="/chat">Chat</Link>
       </VStack>
     </Flex>
   );
