@@ -53,14 +53,11 @@ const Register = () => {
               placeholder="Digite sua senha"
             />
           </FormControl>
-
-          <Button colorScheme="green" width="full" mt="4">
+        <Link href="/home">
+          <Button colorScheme="green" width="full" mt={4} mb={4}>
             Entrar
           </Button>
-
-          <Text textAlign="center" mt="4" color="white">
-            Não tem uma conta?
-          </Text>
+        </Link>
         </Box>
       </Flex>
     </Flex>
