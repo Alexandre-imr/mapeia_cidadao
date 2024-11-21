@@ -33,7 +33,7 @@ export default function MeusFormulariosPage() {
       <Navbar />
 
       {/* Corpo da página */}
-      <Flex flex="1" flexDir="column" p={6} bg="purple.700">
+      <Flex flex="1" flexDir="column" p={6} bg="purple.700" ml="200px">
         {/* Cabeçalho */}
         <Box
           bg="purple.600"

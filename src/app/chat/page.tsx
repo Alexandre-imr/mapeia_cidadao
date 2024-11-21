@@ -31,7 +31,7 @@ export default function ChatPage() {
       <Navbar />
 
       {/* Corpo do chat */}
-      <Flex flex="1" flexDir="column" p={6} bg="purple.700">
+      <Flex flex="1" flexDir="column" p={6} bg="purple.600">
         {/* Cabeçalho com o texto "Suporte" dentro de uma moldura */}
         <Flex justify="center" mb={4}>
           <Box
@@ -56,8 +56,9 @@ export default function ChatPage() {
           flexDirection="column"
           p={4}
           gap={4}
-          bg="purple.800"
+          bg="purple.700"
           borderRadius="md"
+          ml="200px"
         >
           {messages.map((message, index) => (
             <HStack

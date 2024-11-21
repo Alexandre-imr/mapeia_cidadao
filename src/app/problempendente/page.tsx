@@ -53,7 +53,7 @@ export default function ProblemasPendentesPage() {
   ]);
 
   return (
-    <Flex height="100vh">
+    <Flex height="100vh" ml="200px">
       <Navbar />
 
       {/* Corpo da página */}
@@ -104,7 +104,9 @@ export default function ProblemasPendentesPage() {
                       colorScheme="purple"
                       variant="outline"
                       size="sm"
-                      onClick={() => alert(`Abrindo problema ${problema.codigo}`)}
+                      onClick={() =>
+                        alert(`Abrindo problema ${problema.codigo}`)
+                      }
                     />
                   </Td>
                 </Tr>

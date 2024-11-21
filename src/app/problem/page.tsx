@@ -16,7 +16,12 @@ const perguntas = [
   {
     id: 1,
     pergunta: "Selecione a área principal do problema:",
-    opcoes: ["Saneamento Básico", "Infraestrutura Urbana", "Meio Ambiente", "Segurança Pública"],
+    opcoes: [
+      "Saneamento Básico",
+      "Infraestrutura Urbana",
+      "Meio Ambiente",
+      "Segurança Pública",
+    ],
   },
   {
     id: 2,
@@ -25,7 +30,8 @@ const perguntas = [
   },
   {
     id: 3,
-    pergunta: "Você considera que o problema é sazonal ou ocorre durante o ano?",
+    pergunta:
+      "Você considera que o problema é sazonal ou ocorre durante o ano?",
     opcoes: ["Sazonal", "Durante o Ano Todo", "Não Sei", "Outros"],
   },
   {
@@ -64,14 +70,20 @@ const perguntas = [
     id: 10,
     pergunta:
       "Esse problema já teve algum impacto em serviços essenciais da sua região?",
-    opcoes: ["Sim, Serviços de Saúde", "Sim, Transporte", "Sim, Outros Serviços", "Não"],
+    opcoes: [
+      "Sim, Serviços de Saúde",
+      "Sim, Transporte",
+      "Sim, Outros Serviços",
+      "Não",
+    ],
   },
 ];
 
 const CardPerguntas = () => {
   const [respostas, setRespostas] = useState<{ [key: number]: string }>({});
   const [mensagem, setMensagem] = useState("");
-  const [showMessage, setShowMessage] = useState(false); // Estado para exibir a mensagem centralizada
+  const [showMessage, setShowMessage] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleSelectChange = (id: number, value: string) => {
     setRespostas((prevRespostas) => ({
@@ -86,22 +98,39 @@ const CardPerguntas = () => {
       mensagem,
     };
 
-    console.log("Simulando envio dos dados:", data);
+    try {
+      const response = await fetch(
+        "https://n8n-certo-n8n.3zyhkx.easypanel.host/webhook-test/4cbe3cf8-f52e-43c7-9b53-15b75c8f22da",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-    // Simulando um envio
-    setTimeout(() => {
-      setShowMessage(true); // Exibe a mensagem após 1 segundo
-    }, 1000);
+      if (response.ok) {
+        setStatusMessage("Formulário enviado!");
+      } else {
+        setStatusMessage("Falha no envio.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
+      setStatusMessage("Falha no envio.");
+    } finally {
+      setShowMessage(true);
+    }
   };
 
   const closeMessage = () => {
-    setShowMessage(false); // Fecha a mensagem ao clicar
+    setShowMessage(false);
   };
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
       <Navbar />
-      {showMessage ? ( // Exibe a mensagem centralizada se showMessage for true
+      {showMessage && (
         <Flex
           position="absolute"
           top="0"
@@ -121,14 +150,14 @@ const CardPerguntas = () => {
             boxShadow="lg"
           >
             <Text fontSize="lg" fontWeight="bold" mb={4}>
-              Formulário enviado!
+              {statusMessage}
             </Text>
             <Button colorScheme="green" onClick={closeMessage}>
               Fechar
             </Button>
           </Box>
         </Flex>
-      ) : null}
+      )}
       <Box>
         <SimpleGrid columns={2} spacing={10}>
           {perguntas.map(({ id, pergunta, opcoes }) => (
