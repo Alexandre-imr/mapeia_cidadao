@@ -1,55 +1,42 @@
-Esse e um [Next.js](https://nextjs.org) 
-## Inciar o projeto
+Projeto Mapeia Cidadão 🌐
+Este é um projeto desenvolvido utilizando Next.js e Chakra UI v2.10.4, frameworks modernos que oferecem agilidade e performance na construção de interfaces web.
 
-Para rodar a aplicação:
+🚀 Como iniciar o projeto
+Instale as dependências:
 
-##yarn dev
+bash
 
-```
+## yarn install
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-Estamos usando a framework (https://v2.chakra-ui.com/docs/components) V.2.10.4
+Inicie o servidor de desenvolvimento:
 
-'''
-A página principal e a `app/page.tsx` diante dela vamos levar para outras telas
+bash
 
-############################
-segue o nosso package.json
+## yarn dev
 
-{
-  "name": "mapeia_cidadao",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@chakra-ui/cli": "^3.1.0",
-    "@chakra-ui/next-js": "2.4.2",
-    "@chakra-ui/react": "2.8.2",
-    "@chakra-ui/styled-system": "2.12.0",
-    "@chakra-ui/theme": "3.4.6",
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "framer-motion": "^11.11.11",
-    "next": "14.2.17",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.3",
-    "typescript": "^5"
-  },
-  "packageManager": "yarn@4.5.1+sha512.341db9396b6e289fecc30cd7ab3af65060e05ebff4b3b47547b278b9e67b08f485ecd8c79006b405446262142c7a38154445ef7f17c1d5d1de7d90bf9ce7054d",
-  "type": "module"
-}
+Acesse o projeto no navegador através de:
+http://localhost:3000
 
-----------------------------------------------------------------------
-Segue o nosso modelo de [Figma](https://www.figma.com/design/ECZtMtIQaD68SiePNqOWHi/UPX4?node-id=0-1&node-type=canvas&t=GM1r61qC8p1NC0JY-0)
+## 🛠 Estrutura do Projeto
+
+A página inicial está localizada em app/page.tsx.
+A partir dela, direcionaremos a navegação para outras telas.
+
+## 📦 Configurações do Projeto
+
+Dependências principais:
+
+- @chakra-ui/react: Biblioteca de componentes acessíveis e responsivos.
+- next: Framework React para desenvolvimento SSR e SSG.
+- react e react-dom: Bibliotecas base para a construção de interfaces.
+
+## Scripts úteis
+
+yarn dev: Inicia o servidor local.
+yarn build: Realiza o build para produção.
+yarn start: Inicia o servidor de produção.
+yarn lint: Executa verificações de linting no código.
+Confira mais detalhes no arquivo package.json.
+
+🎨 Design no Figma
+O design do projeto foi cuidadosamente planejado no Figma. Acesse o protótipo aqui para visualizar o modelo.
