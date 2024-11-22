@@ -4,15 +4,15 @@ Este é um projeto desenvolvido utilizando Next.js e Chakra UI v2.10.4, framewor
 🚀 Como iniciar o projeto
 Instale as dependências:
 
-bash
+## bash
 
-## yarn install
+yarn install
 
 Inicie o servidor de desenvolvimento:
 
-bash
+## bash
 
-## yarn dev
+yarn dev
 
 Acesse o projeto no navegador através de:
 http://localhost:3000
